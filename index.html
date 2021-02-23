@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="quotes.js"></script>
+        <script>
+            
+            window.onload = init;
+            function init () {
+                randomQuote()
+            }
+
+            function randomQuote () {
+                let randomNumber = Math.floor(Math.random() * QUOTEBANK.length)
+                document.getElementById('text').innerText = QUOTEBANK[randomNumber].quote;
+                document.getElementById('author').innerText = QUOTEBANK[randomNumber].author;
+                let tweetContent = "http://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22"
+
+                tweetContent += QUOTEBANK[randomNumber].quote.replace(/\s/g, '%20')
+                tweetContent += " - " + QUOTEBANK[randomNumber].author.replace(/\s/g, '%20')
+                
+                document.getElementById('tweet-quote').setAttribute('href', tweetContent)
+            }
+        </script>
+    </head>
+    <body>
+        <div class="wrapper" id="quote-box">
+            <div id="text"></div>
+            <div id="author"></div>
+            <button id="new-quote" onclick="{randomQuote()}">New quote</button>
+            <a href="#" id="tweet-quote" target="_blank">Tweets</a>
+        </div>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
+
